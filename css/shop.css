@@ -1,0 +1,240 @@
+/*TDS TASK LIST*/
+
+@import url(http://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+
+  color: #404040;
+  background-color: hsl(34, 53%, 82%);
+}
+.items {
+  width: 100%;
+  margin: 5px auto;
+
+  border: 1px solid #CDD3D7;
+  border-radius: 4px;
+  background: white;
+  -webkit-box-shadow: 0 1px 2px 1px rgba(204, 204, 204, 0.5);
+     -moz-box-shadow: 0 1px 2px 1px rgba(204, 204, 204, 0.5);
+          box-shadow: 0 1px 2px 1px rgba(204, 204, 204, 0.5);
+}
+
+.items-header {
+  line-height: 24px;
+
+  position: relative;
+
+  padding: 7px 15px;
+
+  color: #5D6B6C;
+  border-bottom: 1px solid #D1D1D1;
+  border-radius: 3px 3px 0 0;
+  background: #F0F1F2;
+  background-image: -webkit-linear-gradient(top, #F5F7FD, #E6EAEC);
+  background-image:    -moz-linear-gradient(top, #F5F7FD, #E6EAEC);
+  background-image:      -o-linear-gradient(top, #F5F7FD, #E6EAEC);
+  background-image:         linear-gradient(to bottom, #F5F7FD, #E6EAEC);
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px rgba(0, 0, 0, 0.03);
+          box-shadow: inset 0 1px rgba(255, 255, 255, 0.5), 0 1px rgba(0, 0, 0, 0.03);
+  text-shadow: 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.items-title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: inherit;
+
+  color: inherit;
+}
+
+.items-lists {
+  font: 0/0 serif;
+
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+  width: 19px;
+  height: 3px;
+  margin-top: -11px;
+  padding: 10px 4px;
+
+  color: transparent;
+  text-shadow: none;
+}
+
+.items-lists:before {
+  display: block;
+
+  height: 3px;
+
+  content: '';
+
+  border-radius: 1px;
+  background: #8C959D;
+  -webkit-box-shadow: 0 6px #8C959D, 0 -6px #8C959D;
+          box-shadow: 0 6px #8C959D, 0 -6px #8C959D;
+}
+
+.items-list-item {
+  line-height: 24px;
+
+  display: block;
+
+  padding: 12px 15px;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.items-list-item:hover {
+  background-color: #FAFAFA;
+}
+
+.items-list-item + .items-list-item {
+  border-top: 1px solid #F0F2F3;
+}
+
+.items-list-cb {
+  display: none;
+}
+
+.items-list-mark {
+  position: relative;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  margin-right: 5px;
+
+  vertical-align: top;
+
+  border: 2px solid #C4CBD2;
+  border-radius: 12px;
+}
+
+.items-list-mark:before {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+
+  display: none;
+
+  width: 18px;
+  height: 9px;
+  margin: -3px 0 0 -6px;
+
+  content: '';
+  -webkit-transform: rotate(-45deg);
+     -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+
+  border: solid #39CA74;
+  border-width: 0 0 4px 4px;
+}
+
+.items-list-cb:checked ~ .items-list-mark {
+  border-color: #39CA74;
+}
+
+.items-list-cb:checked ~ .items-list-mark:before {
+  display: block;
+}
+
+.items-list-desc {
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #8A9A9B;
+}
+@media (max-width: 767px) {
+  .items-list-desc {
+    font-size: 14px;
+  }
+}
+
+
+.items-list-cb:checked ~ .items-list-desc {
+  text-decoration: line-through;
+
+  color: #34BF6E;
+}
+.date {
+  font-size: 10px;
+
+  color: #CCCCCC;
+}
+.red {
+  opacity: 0.4;
+  color: #990000;
+}
+.margin-full-5 {
+  margin: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.strike {
+  text-decoration: line-through;
+
+  color: #34BF6E;
+}
+.submenu {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.5rem;
+  line-height: 5rem;
+
+  position: relative;
+
+  display: block;
+
+  letter-spacing: 0.1rem;
+
+  color: #F2F2F2;
+  border-bottom: 1px solid #F0F2F3;
+  background-color: #111111;
+}
+.flex-center {
+  display: flex;
+
+  align-items: center;
+}
+.flex-justify-sa {
+  justify-content: space-around;
+}
+/* ******************************************* */
+/* Optional CSS, default style for ng-sortable */
+/* ******************************************* */
+
+.as-sortable-item, .as-sortable-placeholder {
+    min-height: 20px;
+}
+
+.as-sortable-item {
+    border: solid 1px darkgrey;
+    background-color: #ffffff;
+}
+
+.as-sortable-item-handle {
+}
+
+.as-sortable-placeholder {
+    border: 1px dashed darkgrey;
+    box-sizing: border-box;
+    background-color: #dbdbdb;
+}
+
+.as-sortable-drag {
+    opacity: .8;
+}
+
+.as-sortable-hidden {
+}

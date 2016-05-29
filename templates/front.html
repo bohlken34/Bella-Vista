@@ -1,0 +1,28 @@
+<section class="items">
+	<div class="menu" ng-repeat="category in items">
+		<h1 class="submenu text-center">{{ category.category_name }}</h1>
+		<fieldset class="items-list" data-as-sortable="dragControlListeners">
+			<label class="items-list-item" ng-repeat="item in category.menu_items | filter : filterItem" data-as-sortable-item>
+				<!-- <input
+				type="checkbox"
+				value="{{item.status}}"
+				ng-checked="item.status==2"
+				ng-click="changestatus(item.item,item.status,item.item)"
+				class="items-list-cb"/> -->
+
+				<div class="container-fluid" data-as-sortable-item-handle>
+					<div class="row flex-center">
+						<div class="col-lg-11 col-sm-11">
+							<h3 class="name items-list-desc" ng-class="{strike:item.status==2}">{{item.item | uppercase}}</h3>
+							<p class="description" ng-class="{strike:item.status==2}">{{item.item_description}}</p>
+						</div>
+						<div class="col-lg-1 col-sm-1 flex-center flex-justify-sa">
+							<h5 class="price" ng-class="{strike:item.status==2}">{{item.item_price | currency}}</h5>
+						</div>
+					</div>
+				</div> 
+
+			</label>
+		</fieldset>	
+	</div>
+</section>

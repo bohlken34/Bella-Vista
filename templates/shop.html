@@ -1,0 +1,100 @@
+<section class="items">
+	
+	<header class="items-header">
+		<div class="row">
+			<div class="col-sm-9 col-xs-12">
+
+				<form class="form-inline" name="shopList">
+					<div class="form-group">
+						<label for="menuSelect"> Select a menu: </label>
+						<select id="menuSelect" name="menuSelect" class="form-control" ng-model="menuDropdown" ng-change="refreshItem(menuDropdown); refreshCategories(menuDropdown);">
+							<option ng-repeat="menu in menus" value="{{menu.MENU_ID}}">{{menu.MENU_NAME}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="categorySelect"> Select a category: </label>
+						<select name="menuSelect" class="form-control" ng-model="categoryDropdown">
+							<option ng-repeat="category in categories" value="{{category.CATEGORY_ID}}">{{category.CATEGORY_NAME}}</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="itemInput" placeholder="Add New Item" autofocus required />
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" ng-model="itemDescription" placeholder="Add Description" required />
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">$</div>
+							<input type="text" class="form-control" ng-model="itemPrice" placeholder="Add Price" required />
+						</div>
+					</div>
+					<button class="btn btn-info" type="submit" ng-click="addItem(menuDropdown, categoryDropdown, itemInput, itemDescription, itemPrice); itemInput = null; itemDescription = null; itemPrice = null" ng-disabled="shopList.$invalid">
+						<i class="fa fa-plus"></i>&nbsp;Add Item
+					</button>
+				</form>
+
+			</div>
+
+			<div class="col-sm-3 hidden-xs">
+				<input type="text" ng-model="filterItem" class="form-control" placeholder="Filter Items" />
+			</div>
+		</div>
+	</header>
+	<div class="menu" ng-repeat="category in items">
+		<h1 class="submenu text-center">{{ category.category_name }}</h1>
+		<ul class="items-list" as-sortable="dragControlListeners" data-ng-model="category.menu_items">
+			<li class="items-list-item" ng-repeat="item in category.menu_items | filter: filterItem" as-sortable-item>
+				<div class="container-fluid" as-sortable-item-handle>
+					<div class="row flex-center">
+						<div class="col-lg-1 col-sm-1">
+							<span ><i class="fa fa-arrows-v"></i></span>
+						</div>
+						<div class="col-lg-8 col-sm-8">
+							<h3 class="name items-list-desc" ng-class="{strike:item.status==2}">{{item.item | uppercase}}</h3>
+							<p class="description" ng-class="{strike:item.status==2}">{{item.item_description}}</p>
+						</div>
+						<div class="col-lg-2 col-sm-2 flex-center flex-justify-sa">
+							<h5 class="price" ng-class="{strike:item.status==2}">{{item.item_price | currency}}</h5>
+						</div>
+						<div class="col-lg-1 col-sm-1 flex-center flex-justify-sa">
+							<a ng-click="deleteItem(menuDropdown, item.id)" class="pull-right red"><i class="fa fa-minus-circle fa-lg"></i></a>
+							<a ng-click="editRow($index)" data-toggle="modal" data-target="#editRowModal"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<!--
+		<fieldset class="items-list" as-sortable="dragControlListeners">
+			<label class="items-list-item" ng-repeat="item in category.menu_items | filter : filterItem" as-sortable-item>
+				<input
+				type="checkbox"
+				value="{{item.status}}"
+				ng-checked="item.status==2"
+				ng-click="changestatus(item.item,item.status,item.item)"
+				class="items-list-cb"/>
+
+				<div class="container-fluid" as-sortable-item-handle>
+					<div class="row flex-center">
+						<div class="col-lg-1 col-sm-1">
+							<span class="items-list-mark"></span>
+						</div>
+						<div class="col-lg-8 col-sm-8">
+							<h3 class="name items-list-desc" ng-class="{strike:item.status==2}">{{item.item | uppercase}}</h3>
+							<p class="description" ng-class="{strike:item.status==2}">{{item.item_description}}</p>
+						</div>
+						<div class="col-lg-2 col-sm-2 flex-center flex-justify-sa">
+							<h5 class="price" ng-class="{strike:item.status==2}">{{item.item_price | currency}}</h5>
+						</div>
+						<div class="col-lg-1 col-sm-1 flex-center flex-justify-sa">
+							<a ng-click="deleteItem(menuDropdown, item.id)" class="pull-right red"><i class="fa fa-minus-circle fa-lg"></i></a>
+							<a ng-click="editRow($index)" data-toggle="modal" data-target="#editRowModal"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+						</div>
+					</div>
+				</div> 
+
+			</label>
+		</fieldset>	-->
+	</div>
+</section>
